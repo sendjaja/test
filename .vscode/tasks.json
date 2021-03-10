@@ -1,0 +1,80 @@
+{
+    // See https://go.microsoft.com/fwlink/?LinkId=733558 
+    // for the documentation about the tasks.json format
+    "version": "2.0.0",
+    /*
+    "tasks": [
+        {
+            "type": "shell",
+            "label": "g++ build active file",
+            "command": "/usr/bin/g++",
+            "args": [
+                "-g",
+                "-pthread",
+                "${workspaceFolder}/main.cpp",
+                "-o",
+                "${workspaceFolder}/test.out"
+            ],
+            "options": {
+                "cwd": "/usr/bin"
+            },
+            "problemMatcher": [
+                "$gcc"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            }
+        }
+    ]
+    */
+    "tasks": [
+        {
+          "label": "Open Terminal",
+          "type": "shell",
+          // "command": "osascript -e 'tell application \"Terminal\"\ndo script \"echo hello\"\nend tell'",
+          "command": "osascript -e 'tell application \"Terminal\"\ndo script \"${workspaceFolder}/build/test\"\nend tell'",
+          "problemMatcher": []
+        },
+/*
+        {
+          "type": "shell",
+          "label": "clang++ build active file",
+          "windows": { "command": "/usr/bin/clang++" },
+          "linux": { "command": "/usr/bin/g++" },
+          "osx": { "command": "/usr/bin/clang++" },
+          "args": [
+            "-std=c++17",
+            // "-stdlib=libc++",
+            "-g",
+            "-pthread",
+            // "${file}",
+            "${workspaceFolder}/main.cpp",
+            "-o",
+            // "${fileDirname}/${fileBasenameNoExtension}"
+            "${workspaceFolder}/test.out"
+          ],
+          "options": {
+            "cwd": "${workspaceFolder}"
+          },
+          "problemMatcher": ["$gcc"],
+          "group": {
+            "kind": "build",
+            "isDefault": false
+          }
+        },
+*/
+        {
+            "label": "make",
+            "type": "shell",
+            "command": "cd build && make",
+            "options": {
+                "cwd": "${workspaceFolder}"
+            },
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            }
+        }
+      ]
+}
