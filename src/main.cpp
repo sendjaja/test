@@ -4,8 +4,10 @@
 using namespace std;
 
 #include "test_printf.h"
-#include <test_queue.h>
+#include "test_queue.h"
 #include "test_semaphore.h"
+#include "test_oo_inheritance.h"
+#include "test_unique_name.h"
 
 // #define DEBUG
 
@@ -15,12 +17,14 @@ typedef struct testf {
     int (*test_function)();
 } testf;
 
-const unsigned int testCount = 3;
+const unsigned int testCount = 5;
 
 testf alltest[testCount] = {
     {0, "helloworld", test_helloworld},
     {1, "queue"     , test_queue},
     {2, "semaphore" , test_semaphore},
+    {3, "OO inheritance", test_oo_inheritance},
+    {4, "unique names", test_unique_name}
 };
 
 void print_choices()
@@ -32,12 +36,12 @@ void print_choices()
     printf("Choose test to run: ");
 }
 
-void clean_stdin(void) 
+void clean_stdin(void)
 {
 
-    int c; 
-    do { 
-        c = getchar(); 
+    int c;
+    do {
+        c = getchar();
     } while (c != '\n' && c != EOF);
 }
 

@@ -8,7 +8,6 @@
             "name": "(gdb) Launch",
             "type": "cppdbg",
             "request": "launch",
-            "targetArchitecture": "arm64",
             "program": "${workspaceFolder}/build/test",
             "args": [],
             "stopAtEntry": true,
