@@ -73,7 +73,7 @@ int main()
             puts(buffer);
 #endif
             char *endptr;
-            long i = strtol(buffer, &endptr, 10);
+            unsigned long i = strtol(buffer, &endptr, 10);
 
             if((*endptr == '\n') && (read > 1))
             {
