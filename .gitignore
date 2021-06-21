@@ -1,3 +1,7 @@
 build/*
 ninja/*
 valgrind.txt
+
+# APPLE
+.DS_Store
+*UserInterfaceState.xcuserstate
