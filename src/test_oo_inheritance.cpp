@@ -1,4 +1,4 @@
-#include <test_oo_inheritance.h>
+#include "test_oo_inheritance.h"
 using namespace std;
 /*
 Object
@@ -67,7 +67,7 @@ class person
 {
 private:
     char name[20];
-    unsigned int id;
+    unsigned int id = 0;
 protected:
 public:
     unsigned int getID(){ return id; }

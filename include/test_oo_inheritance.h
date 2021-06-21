@@ -1,5 +1,5 @@
-#ifndef TEST_OO_INHERITANCE
-#define TEST_O0_INHERITANCE_H
+#ifndef TEST_OO_INHERITANCE_H
+#define TEST_OO_INHERITANCE_H
 
 #include <iostream>
 

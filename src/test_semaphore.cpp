@@ -1,4 +1,4 @@
-#include <test_semaphore.h>
+#include "test_semaphore.h"
 
 int test_semaphore()
 {

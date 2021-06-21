@@ -58,7 +58,11 @@ void clean_stdin(void)
 int main()
 {
     char *buffer = NULL;
+#ifdef __APPLE__
+    ssize_t read;
+#else
     int read;
+#endif
     size_t len;
     do {
         print_choices();
@@ -69,7 +73,7 @@ int main()
             puts(buffer);
 #endif
             char *endptr;
-            unsigned int i = strtol(buffer, &endptr, 10);
+            long i = strtol(buffer, &endptr, 10);
 
             if((*endptr == '\n') && (read > 1))
             {
@@ -112,7 +116,11 @@ int main()
             clean_stdin();
         }
 #ifdef DEBUG
+#ifdef __APPLE__
+        printf("Size read: %zd\n Len: %lu\n", read, len);
+#else
         printf("Size read: %d\n Len: %lu\n", read, len);
+#endif
 #endif
     }while(true);
 
