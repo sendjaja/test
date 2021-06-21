@@ -5,6 +5,9 @@
 #include <algorithm>
 using namespace std;
 
+/* Implement the unique_names method. When passed two vector of names, it will return a vector containing the names that 
+ * appear in either or both vectors. The returned vector should have no duplicates.
+ */
 std::vector<std::string> unique_names(const std::vector<std::string>& names1, const std::vector<std::string>& names2)
 {
     //throw std::logic_error("Waiting to be implemented");

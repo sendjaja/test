@@ -8,6 +8,11 @@ using namespace std;
 #include "test_semaphore.h"
 #include "test_oo_inheritance.h"
 #include "test_unique_name.h"
+#include "test_quadratic_equation.h"
+#include "test_sort_word.h"
+#include "test_bits.h"
+#include "test_overload_function.h"
+#include "test_struct.h"
 
 // #define DEBUG
 
@@ -17,14 +22,19 @@ typedef struct testf {
     int (*test_function)();
 } testf;
 
-const unsigned int testCount = 5;
+const unsigned int testCount = 10;
 
 testf alltest[testCount] = {
-    {0, "helloworld", test_helloworld},
-    {1, "queue"     , test_queue},
-    {2, "semaphore" , test_semaphore},
-    {3, "OO inheritance", test_oo_inheritance},
-    {4, "unique names", test_unique_name}
+    {0,          "helloworld", test_helloworld        },
+    {1,          "queue"     , test_queue             },
+    {2,          "semaphore" , test_semaphore         },
+    {3,      "OO inheritance", test_oo_inheritance    },
+    {4,        "unique names", test_unique_name       },
+    {5,  "quadratic equation", test_quadratic_equation},
+    {6,           "sort word", test_sort_word         },
+    {7,                "bits", test_bits              },
+    {8,   "overload function", test_overload_function },
+    {9,              "struct", test_struct            }
 };
 
 void print_choices()
@@ -66,6 +76,7 @@ int main()
                 // Newline don't print Invalid choice, just ask for input again
                 if(i < sizeof(alltest)/sizeof(testf))
                 {
+                    // Call the test function
                     while(alltest[i].test_function() != 0);
                 }
                 else if(i == sizeof(alltest)/sizeof(testf))

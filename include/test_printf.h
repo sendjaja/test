@@ -3,6 +3,11 @@
 
 #include <stdio.h>
 
+// For vector_print
+#include <iostream>
+#include <vector>
+using namespace std;
+
 int test_helloworld();
 
 #endif
