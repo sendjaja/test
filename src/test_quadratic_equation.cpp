@@ -29,7 +29,7 @@ std::pair<double, double> findRoots(double a, double b, double c)
     else {
         realPart = -b/(2*a);
         imaginaryPart =sqrt(-discriminant)/(2*a);
-        cout << "Roots are complex and different."  << endl;
+        cout << "Roots are complex and different." << endl;
         cout << "x1 = " << realPart << "+" << imaginaryPart << "i" << endl;
         cout << "x2 = " << realPart << "-" << imaginaryPart << "i" << endl;
     }

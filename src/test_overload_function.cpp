@@ -46,7 +46,7 @@ int test_overload_function()
     input->add('1');
     input->add('a');
     input->add('0');
-    std::cout << input->getValue() << endl;
+    std::cout << input->getValue() << std::endl;
 
     return 0;
 }

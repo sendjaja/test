@@ -14,8 +14,6 @@ using namespace std;
 #include "test_overload_function.h"
 #include "test_struct.h"
 
-// #define DEBUG
-
 typedef struct testf {
     unsigned int index;
     const char *name;
@@ -55,6 +53,7 @@ void clean_stdin(void)
     } while (c != '\n' && c != EOF);
 }
 
+#if DEBUG == 0
 int main()
 {
     char *buffer = NULL;
@@ -69,9 +68,8 @@ int main()
         read = getline(&buffer, &len, stdin);
         if (-1 != read)
         {
-#ifdef DEBUG
+            printf("Selection: ");
             puts(buffer);
-#endif
             char *endptr;
             unsigned long i = strtol(buffer, &endptr, 10);
 
@@ -115,15 +113,25 @@ int main()
             printf("No line read...\n");
             clean_stdin();
         }
-#ifdef DEBUG
 #ifdef __APPLE__
         printf("Size read: %zd\n Len: %lu\n", read, len);
 #else
         printf("Size read: %d\n Len: %lu\n", read, len);
-#endif
 #endif
     }while(true);
 
     free(buffer);
     return 0;
 }
+
+#else  //ifndef DEBUG
+
+#include <gtest/gtest.h>
+
+// If DEBUG is defined, use google test to run all test
+int main(int argc, const char * argv[]) {
+    testing::InitGoogleTest(&argc, (char**)argv);
+    return RUN_ALL_TESTS();
+}
+
+#endif // ifndef DEBUG
