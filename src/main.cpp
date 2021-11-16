@@ -53,8 +53,7 @@ void clean_stdin(void)
     } while (c != '\n' && c != EOF);
 }
 
-#if DEBUG == 0
-int main()
+int menu(int choice)
 {
     char *buffer = NULL;
 #ifdef __APPLE__
@@ -63,15 +62,29 @@ int main()
     int read;
 #endif
     size_t len;
-    do {
+    while(true) {
         print_choices();
-        read = getline(&buffer, &len, stdin);
-        if (-1 != read)
+        char *endptr;
+        unsigned long i = 0;
+        if(choice == 0)
         {
+            read = getline(&buffer, &len, stdin);
             printf("Selection: ");
             puts(buffer);
-            char *endptr;
-            unsigned long i = strtol(buffer, &endptr, 10);
+            i = strtol(buffer, &endptr, 10);
+        }
+        else
+        {
+            read = 2;
+            len = 2;
+            endptr = new char('\n');
+            i = --choice;
+            printf("Selection: %lu\n", i);
+        }
+        if (-1 != read)
+        {
+
+
 
             if((*endptr == '\n') && (read > 1))
             {
@@ -79,7 +92,7 @@ int main()
                 if(i < sizeof(alltest)/sizeof(testf))
                 {
                     // Call the test function
-                    while(alltest[i].test_function() != 0);
+                    alltest[i].test_function();
                 }
                 else if(i == sizeof(alltest)/sizeof(testf))
                 {
@@ -118,15 +131,24 @@ int main()
 #else
         printf("Size read: %d\n Len: %lu\n", read, len);
 #endif
-    }while(true);
+    };
 
     free(buffer);
     return 0;
 }
 
+#if DEBUG == 0
+int main(/*int argc, const char * argv[]*/) {
+    menu(0);
+}
 #else  //ifndef DEBUG
 
 #include <gtest/gtest.h>
+
+TEST(TestAll, test)
+{
+    EXPECT_EQ(0, menu((unsigned int)testCount));
+}
 
 // If DEBUG is defined, use google test to run all test
 int main(int argc, const char * argv[]) {

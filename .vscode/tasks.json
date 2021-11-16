@@ -6,15 +6,11 @@
     "tasks": [
         {
             "type": "shell",
-            "label": "g++ build active file",
-            "command": "/usr/bin/g++",
+            "label": "make",
+            // Set DEBUG to 1 for running google test, 0 for manually choosing test
+            "command": "cd build && cmake -DCMAKE_CXX_FLAGS=\"-DDEBUG=1\" .. && make -j 8",
             "args": [
-                "-g",
-                "-pthread",
-                "-I${workspaceFolder}/include",
-                "${workspaceFolder}/src/**",
-                "-o",
-                "${workspaceFolder}/test.out"
+
             ],
             "options": {
                 "cwd": "${workspaceFolder}"
@@ -27,21 +23,5 @@
                 "isDefault": true
             }
         }
-    ]
-    /*
-    "tasks": [
-        {
-            "label": "make",
-            "type": "shell",
-            "command": "cd build && make",
-            "options": {
-                "cwd": "${workspaceFolder}"
-            },
-            "group": {
-                "kind": "build",
-                "isDefault": true
-            }
-        }
       ]
-    */
 }

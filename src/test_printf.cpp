@@ -18,10 +18,3 @@ int test_helloworld()
     vector_print();
     return 0;
 }
-
-namespace {
-    TEST(TestPrintf, test1)
-    {
-        EXPECT_EQ(0, test_helloworld());
-    }
-}

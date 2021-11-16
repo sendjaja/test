@@ -13,6 +13,7 @@
         "limits": "cpp",
         "*.tcc": "cpp",
         "typeinfo": "cpp",
-        "ostream": "cpp"
+        "ostream": "cpp",
+        "iostream": "cpp"
     }
 }

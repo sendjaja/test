@@ -66,7 +66,6 @@ class D : private A // 'private' is default for classes
 class person
 {
 private:
-    char name[20];
     unsigned int id = 0;
 protected:
 public:
