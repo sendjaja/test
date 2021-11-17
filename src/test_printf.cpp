@@ -1,5 +1,4 @@
 #include "test_printf.h"
-#include <gtest/gtest.h>
 
 void vector_print()
 {

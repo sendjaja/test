@@ -13,6 +13,7 @@ using namespace std;
 #include "test_bits.h"
 #include "test_overload_function.h"
 #include "test_struct.h"
+#include "test_thread.h"
 
 typedef struct testf {
     unsigned int index;
@@ -20,7 +21,7 @@ typedef struct testf {
     int (*test_function)();
 } testf;
 
-const unsigned int testCount = 10;
+const unsigned int testCount = 11;
 
 testf alltest[testCount] = {
     {0,          "helloworld", test_helloworld        },
@@ -32,7 +33,8 @@ testf alltest[testCount] = {
     {6,           "sort word", test_sort_word         },
     {7,                "bits", test_bits              },
     {8,   "overload function", test_overload_function },
-    {9,              "struct", test_struct            }
+    {9,              "struct", test_struct            },
+    {10,            "threads", test_thread            }
 };
 
 void print_choices()
@@ -78,14 +80,13 @@ int menu(int choice)
             read = 2;
             len = 2;
             endptr = new char('\n');
+            if(choice == 1)
+                exit(0);
             i = --choice;
             printf("Selection: %lu\n", i);
         }
         if (-1 != read)
         {
-
-
-
             if((*endptr == '\n') && (read > 1))
             {
                 // Newline don't print Invalid choice, just ask for input again
