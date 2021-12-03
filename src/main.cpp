@@ -55,92 +55,139 @@ void clean_stdin(void)
     } while (c != '\n' && c != EOF);
 }
 
-int menu(int choice)
+int call_test(unsigned long i)
 {
-    char *buffer = NULL;
+    if(i < sizeof(alltest)/sizeof(testf))
+    {
+        // Call the test function
+        printf("test %s\n", alltest[i].name);
+        alltest[i].test_function();
+    }
+    else if(i == sizeof(alltest)/sizeof(testf))
+    {
+        // Choosing number same as testCount is exit
+        return -1;
+    }
+    else
+    {
+        // choice is bigger than testCount or negative
+        printf("Invalid test\n");
+    }
+
+    return 0;
+}
+
+int menu(long choice)
+{
 #ifdef __APPLE__
-    ssize_t read;
+    ssize_t read = 0;
 #else
-    int read;
+    int read = 0;
 #endif
-    size_t len;
-    while(true) {
-        print_choices();
+
+    size_t len = 0;
+
+    if(choice < 0)
+    {
+        char *buffer = NULL;
         char *endptr;
         unsigned long i = 0;
-        if(choice == 0)
+        while(true)
         {
+            print_choices();
             read = getline(&buffer, &len, stdin);
             printf("Selection: ");
             puts(buffer);
-            i = strtol(buffer, &endptr, 10);
-        }
-        else
-        {
-            read = 2;
-            len = 2;
-            endptr = new char('\n');
-            if(choice == 1)
-                exit(0);
-            i = --choice;
-            printf("Selection: %lu\n", i);
-        }
-        if (-1 != read)
-        {
-            if((*endptr == '\n') && (read > 1))
+            i = strtoul(buffer, &endptr, 10);
+            if (-1 != read)
             {
-                // Newline don't print Invalid choice, just ask for input again
-                if(i < sizeof(alltest)/sizeof(testf))
+                if((*endptr == '\n') && (read > 1))
                 {
-                    // Call the test function
-                    alltest[i].test_function();
-                }
-                else if(i == sizeof(alltest)/sizeof(testf))
-                {
-                    // Choosing number same as testCount is exit
-                    break;
+                    // Newline don't print Invalid choice, just ask for input again
+                    if( call_test(i)==-1 )
+                        break;
                 }
                 else
                 {
-                    // choice is bigger than testCount or negative
-                    printf("Invalid test\n");
+                    // Choice is character then do nothing
+
+                    // If input is not newline print error
+                    // If input is newline, do not print error
+                    if(*endptr != '\n')
+                        printf("Invalid choice\n");
                 }
             }
             else
             {
-                // Choice is character then do nothing
+                // This if is for handling Ctrl-D
+                // in bash shell it's fine, in VSCode terminal, it keeps looping?
+                if(*buffer == '\0')
+                    break;
 
-                // If input is not newline print error
-                // If input is newline, do not print error
-                if(*endptr != '\n')
-                    printf("Invalid choice\n");
+                // When does this get executed?
+                printf("No line read...\n");
+                clean_stdin();
             }
         }
-        else
-        {
-            // This if is for handling Ctrl-D
-            // in bash shell it's fine, in VSCode terminal, it keeps looping?
-            if(*buffer == '\0')
-                break;
 
-            // When does this get executed?
-            printf("No line read...\n");
-            clean_stdin();
-        }
+        if(buffer)
+            free(buffer);
+    }
+    else
+    {
+        std::cout << "Selection: " << choice << std::endl;
+        if(call_test(choice)==-1)
+            exit(0);
+    }
+
+#if DEBUG == 1
 #ifdef __APPLE__
         printf("Size read: %zd\n Len: %lu\n", read, len);
 #else
         printf("Size read: %d\n Len: %lu\n", read, len);
 #endif
-    };
+#endif // DEBUG
 
-    free(buffer);
     return 0;
 }
 
 #if DEBUG == 0
-int main(/*int argc, const char * argv[]*/) {
-    menu(0);
+int main(int argc, const char * argv[]) {
+    if(argc > 2)
+    {
+        cout << "too many arguments" << endl;
+        return -1;
+    }
+    else if(argc == 2)
+    {
+        // check for char in argv[1]
+        for(int j=0; argv[1][j] != 0; j++)
+        {
+            if (!isdigit(argv[1][j]))
+            {
+                cout << "invalid argument" << endl;
+                return -1;
+            }
+        }
+
+        unsigned long i = strtoul(argv[1], NULL, 10);
+        // check errno for empty input, ""
+        if(errno != 0)
+        {
+            cout << "invalid argument" << endl;
+            return -1;
+        }
+        else
+            menu(i);
+    }
+    else
+    {
+        // input -1 to menu() for letting user select which
+        // test to run manually
+        menu(-1);
+    }
+
+    return 0;
 }
 #else  //ifndef DEBUG
 
@@ -148,7 +195,10 @@ int main(/*int argc, const char * argv[]*/) {
 
 TEST(TestAll, test)
 {
-    EXPECT_EQ(0, menu((unsigned int)testCount));
+    for(unsigned long i = 0; i < testCount; i++)
+    {
+        EXPECT_EQ(0, menu(i));
+    }
 }
 
 // If DEBUG is defined, use google test to run all test
