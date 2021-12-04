@@ -1,6 +1,6 @@
 cmake_minimum_required (VERSION 3.8)
 
-project(Test CXX)
+project(Test)
 
 add_compile_options(-Wall)
 add_compile_options(-Wextra)
@@ -16,7 +16,10 @@ set(CMAKE_CXX_STANDARD 14)
 
 include_directories("include")
 
-file(GLOB SOURCES "src/*.cpp")
+file(GLOB SOURCES
+  src/*.cpp
+  src/*.c
+)
 
 add_executable(test ${SOURCES})
 

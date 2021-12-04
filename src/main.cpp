@@ -14,6 +14,8 @@ using namespace std;
 #include "test_overload_function.h"
 #include "test_struct.h"
 #include "test_thread.h"
+#include "test_generate_password_CPlusPlus.h"
+#include "test_generate_password_C.h"
 
 typedef struct testf {
     unsigned int index;
@@ -21,20 +23,22 @@ typedef struct testf {
     int (*test_function)();
 } testf;
 
-const unsigned int testCount = 11;
+const unsigned int testCount = 13;
 
 testf alltest[testCount] = {
-    {0,          "helloworld", test_helloworld        },
-    {1,          "queue"     , test_queue             },
-    {2,          "semaphore" , test_semaphore         },
-    {3,      "OO inheritance", test_oo_inheritance    },
-    {4,        "unique names", test_unique_name       },
-    {5,  "quadratic equation", test_quadratic_equation},
-    {6,           "sort word", test_sort_word         },
-    {7,                "bits", test_bits              },
-    {8,   "overload function", test_overload_function },
-    {9,              "struct", test_struct            },
-    {10,            "threads", test_thread            }
+    { 0,              "helloworld", test_helloworld                 },
+    { 1,              "queue"     , test_queue                      },
+    { 2,              "semaphore" , test_semaphore                  },
+    { 3,          "OO inheritance", test_oo_inheritance             },
+    { 4,            "unique names", test_unique_name                },
+    { 5,      "quadratic equation", test_quadratic_equation         },
+    { 6,               "sort word", test_sort_word                  },
+    { 7,                    "bits", test_bits                       },
+    { 8,       "overload function", test_overload_function          },
+    { 9,                  "struct", test_struct                     },
+    {10,                 "threads", test_thread                     },
+    {11,   "generate password C++", test_generate_password_CPlusPlus},
+    {12,     "generate password C", test_generate_password_C        }
 };
 
 void print_choices()
@@ -48,7 +52,6 @@ void print_choices()
 
 void clean_stdin(void)
 {
-
     int c;
     do {
         c = getchar();
@@ -142,9 +145,9 @@ int menu(long choice)
 
 #if DEBUG == 1
 #ifdef __APPLE__
-        printf("Size read: %zd\n Len: %lu\n", read, len);
+        printf("Size read: %zd\nLen: %lu\n", read, len);
 #else
-        printf("Size read: %d\n Len: %lu\n", read, len);
+        printf("Size read: %d\nLen: %lu\n", read, len);
 #endif
 #endif // DEBUG
 
