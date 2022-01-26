@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # program needed
-# git, awk, sed, uniq
+# git, awk, sed, uniq, jq
 
 Server="https://jira.atlassian.com/rest/api/2/issue/"
 
@@ -89,6 +89,10 @@ done
 
 TICKET_LIST=commit_list_sample.txt
 
+OUTPUT=result.txt
+
+rm -f $OUTPUT
+
 IFS=$'\n'       # make newlines the only separator
 set -f          # disable globbing
 for i in $(cat < $TICKET_LIST); do
@@ -99,5 +103,5 @@ for i in $(cat < $TICKET_LIST); do
    SUMMARY=${SUMMARY#?}
    # Remove last character from summary
    SUMMARY=${SUMMARY%?}
-   echo $i $SUMMARY
+   echo $i $SUMMARY >> $OUTPUT
 done
