@@ -3,7 +3,7 @@
 # program needed
 # git, awk, sed, uniq, jq
 
-Server=""
+Server="https://jira.atlassian.com/rest/api/2/issue/"
 
 # NEED TO EDIT THIS FILE FOR LOCAL GIT REPO LOCATION
 # otherwise clone everytime? not very efficient, but ensure
@@ -32,7 +32,7 @@ getMergedTickets()
       echo "To   : $2"
 
       # Why does --first-parent not work?
-      git -C $i log --no-merges --pretty=oneline  $1...$2 > commit_list.txt
+      git -C $i log --pretty=oneline  $1..$2 > commit_list.txt
 
       # Find the first occurence of NEUR- and the following 5 characters
       awk -v ref=$JIRA_TYPE 'match($0, ref) {
@@ -52,11 +52,12 @@ getMergedTickets()
       #sed 's/^ *//' commit_list.txt | cut -d" " -f2- > commit_list_1.txt
 
       # Sort if needed
-      sort commit_list_2.txt > commit_list_sorted.txt
+      # sort commit_list_2.txt > commit_list_sorted.txt
 
       # Remove all duplicates using unique
-      uniq commit_list_sorted.txt > commit_list_3.txt
-      #uniq commit_list_2.txt > commit_list_3.txt
+      # uniq commit_list_sorted.txt > commit_list_3.txt
+
+      awk '!x[$0]++' commit_list_2.txt > commit_list_3.txt
 
       awk -v ref=$JIRA_TYPE '{print ref $0}' commit_list_3.txt > $TICKET_LIST
       rm commit_list_sorted.txt commit_list_1.txt commit_list_2.txt commit_list.txt commit_list_3.txt
@@ -122,6 +123,7 @@ fi
 # commit $parameterA to commit $parameterB
 getMergedTickets $parameterA $parameterB
 
+parameterC="output.txt"
 # Use JIRA Rest API to get JIRA ticket summary
 getJIRASummary $parameterC
 
