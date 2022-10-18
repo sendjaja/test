@@ -16,6 +16,7 @@ using namespace std;
 #include "test_thread.h"
 #include "test_generate_password_CPlusPlus.h"
 #include "test_generate_password_C.h"
+#include "test_2darray.h"
 
 typedef struct testf {
     unsigned int index;
@@ -23,7 +24,7 @@ typedef struct testf {
     int (*test_function)();
 } testf;
 
-const unsigned int testCount = 13;
+const unsigned int testCount = 14;
 
 testf alltest[testCount] = {
     { 0,              "helloworld", test_helloworld                 },
@@ -38,7 +39,8 @@ testf alltest[testCount] = {
     { 9,                  "struct", test_struct                     },
     {10,                 "threads", test_thread                     },
     {11,   "generate password C++", test_generate_password_CPlusPlus},
-    {12,     "generate password C", test_generate_password_C        }
+    {12,     "generate password C", test_generate_password_C        },
+    {13,                 "2darray", test_2darray                    }
 };
 
 void print_choices()
