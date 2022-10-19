@@ -1,8 +1,7 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <iostream>
-using namespace std;
+// test struct used internally
+#include "testf.h"
 
+// test cases
 #include "test_printf.h"
 #include "test_queue.h"
 #include "test_semaphore.h"
@@ -18,12 +17,7 @@ using namespace std;
 #include "test_generate_password_C.h"
 #include "test_2darray.h"
 
-typedef struct testf {
-    unsigned int index;
-    const char *name;
-    int (*test_function)();
-} testf;
-
+// List of tests
 testf alltest[] = {
     { 0,              "helloworld", test_helloworld                 },
     { 1,              "queue"     , test_queue                      },
@@ -43,6 +37,7 @@ testf alltest[] = {
 
 unsigned int testCount = sizeof(alltest)/sizeof(testf);
 
+// Print all the tests
 void print_choices()
 {
     for(unsigned int i=0; i< testCount; i++) {
@@ -60,6 +55,7 @@ void clean_stdin(void)
     } while (c != '\n' && c != EOF);
 }
 
+// Call test if it's valid
 int call_test(unsigned long i)
 {
     if(i < sizeof(alltest)/sizeof(testf))
