@@ -3,42 +3,36 @@
 class  Color
 {
 private:
-    int i;
+    int R;
+    int G;
+    int B;
 protected:
 public:
     Color() {}
     Color(int a, int b, int c) {
-        this->i = a;
-        this->j = b;
-        this->k = c;
+        this->R = a;
+        this->G = b;
+        this->B = c;
     }
-    int geti() { return this->i;};
+
     void print_content() {
-        printf("i:%d ", this->i);
-        printf("j:%d ", this->j);
-        printf("k:%d\n", this->k);
+        printf("R:%d;G:%d;B:%d\n", this->R, this->G, this->B);
     };
 
-    int getR(){ return i;};
-
-    int j;
-    int k;
+    int getR(){ return R;};
+    int getG(){ return G;};
+    int getB(){ return B;};
 };
 
 static Color *pmatrix[10][10] {};
 
-void setupColor(int r, int c, int R, int G, int B)
+void setupColor(int row, int col, int R, int G, int B)
 {
-    Color *c1 = new Color(R,G,B);
-    printf("&c1:%p c1:%p\n", &c1, c1);
+    Color *c = new Color(R,G,B);
+    printf("&c:%p c:%p\n", &c, c);
 
-    // printf("c1->i %p:%d\n" , &(c1->i), c1->i);
-    // printf("c1->j %p:%d\n" , &(c1->j), c1->j);
-    // printf("c1->k %p:%d\n" , &(c1->k), c1->k);
-
-    pmatrix[r][c] = c1;
-    printf("&pmatrix[%d][%d]:%p pmatrix[%d][%d]:%p\n", r, c, &pmatrix[r][c], r, c, pmatrix[r][c]);
-
+    pmatrix[row][col] = c;
+    printf("&pmatrix[%d][%d]:%p pmatrix[%d][%d]:%p\n", row, col, &pmatrix[row][col], row, col, pmatrix[row][col]);
 }
 
 int test_2darray()
@@ -47,35 +41,18 @@ int test_2darray()
     // static Color matrix[10][10];
     // printf("size of matrix: %lu\n", sizeof(matrix));
 
-
-    printf("size of pmatrix: %lu\n", sizeof(pmatrix));
-
-    // Color *c1 = new Color(1,2,3);
+    printf("Initial size of pmatrix: %lu\n", sizeof(pmatrix));
 
     setupColor(0, 0, 1, 2, 3);
-    // printf("&c1:%p c1:%p\n", &c1, c1);
-
-    // printf("c1->i %p:%d\n" , &(c1->i), c1->i);
-    // printf("c1->j %p:%d\n" , &(c1->j), c1->j);
-    // printf("c1->k %p:%d\n" , &(c1->k), c1->k);
 
     setupColor(0, 1, 4, 5, 6);
 
-    // Color *c2 = new Color(4,5,6);
-    // printf("&c1:%p c2:%p\n", &c2 ,c2);
+    printf("pmatrix[0][0] = %d:%d:%d\n",
+        pmatrix[0][0]->getR(), pmatrix[0][0]->getG(), pmatrix[0][0]->getB() );
 
-    // printf("c2->i %p:%d\n" , &(c2->i), c2->i);
-    // printf("c2->j %p:%d\n" , &(c2->j), c2->j);
-    // printf("c2->k %p:%d\n" , &(c2->k), c2->k);
+    printf("pmatrix[0][1] = %d:%d:%d\n",
+        pmatrix[0][1]->getR(), pmatrix[0][1]->getG(), pmatrix[0][1]->getB() );
 
-    // pmatrix[0][0] = c1;
-    // printf("&pmatrix[0][0]:%p pmatrix[0][0]:%p\n", &pmatrix[0][0], pmatrix[0][0]);
-
-    printf("pmatrix[0][1] = %d  ", pmatrix[0][1]->getR() );
-    // pmatrix[0][1] = c2;
-    // printf("&pmatrix[0][1]:%p pmatrix[0][1]:%p\n", &pmatrix[0][1], pmatrix[0][1]);
-
-
-    printf("size of pmatrix after adding c1: %lu\n", sizeof(pmatrix));
+    printf("size of pmatrix after adding two Color: %lu\n", sizeof(pmatrix));
     return 0;
 }
