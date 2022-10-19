@@ -24,9 +24,7 @@ typedef struct testf {
     int (*test_function)();
 } testf;
 
-const unsigned int testCount = 14;
-
-testf alltest[testCount] = {
+testf alltest[] = {
     { 0,              "helloworld", test_helloworld                 },
     { 1,              "queue"     , test_queue                      },
     { 2,              "semaphore" , test_semaphore                  },
@@ -42,6 +40,8 @@ testf alltest[testCount] = {
     {12,     "generate password C", test_generate_password_C        },
     {13,                 "2darray", test_2darray                    }
 };
+
+unsigned int testCount = sizeof(alltest)/sizeof(testf);
 
 void print_choices()
 {
