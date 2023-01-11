@@ -16,6 +16,7 @@
 #include "test_generate_password_CPlusPlus.h"
 #include "test_generate_password_C.h"
 #include "test_2darray.h"
+#include "test_bitfields.h"
 
 // List of tests
 testf alltest[] = {
@@ -32,7 +33,8 @@ testf alltest[] = {
     {10,                 "threads", test_thread                     },
     {11,   "generate password C++", test_generate_password_CPlusPlus},
     {12,     "generate password C", test_generate_password_C        },
-    {13,                 "2darray", test_2darray                    }
+    {13,                 "2darray", test_2darray                    },
+    {14,               "bitfields", test_bitfields                  }
 };
 
 unsigned int testCount = sizeof(alltest)/sizeof(testf);
