@@ -5,8 +5,8 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "(gdb) Launch",
-            "type": "cppdbg",
+            "name": "Launch",
+            "type": "lldb",
             "request": "launch",
             "program": "${workspaceFolder}/build/test",
             "args": [],
@@ -14,10 +14,7 @@
             "cwd": "${workspaceFolder}",
             "environment": [],
             "externalConsole": false,
-            "MIMode": "gdb",
-            // "windows": { "MIMode": "lldb"},
-            // "linux": { "MIMode": "gdb" },
-            // "osx": { "MIMode": "lldb"},
+            "MIMode": "lldb",
             "setupCommands": [
                 {
                     "description": "Enable pretty-printing for gdb",

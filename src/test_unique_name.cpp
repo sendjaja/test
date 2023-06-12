@@ -5,7 +5,7 @@
 #include <algorithm>
 using namespace std;
 
-/* Implement the unique_names method. When passed two vector of names, it will return a vector containing the names that 
+/* Implement the unique_names method. When passed two vector of names, it will return a vector containing the names that
  * appear in either or both vectors. The returned vector should have no duplicates.
  */
 std::vector<std::string> unique_names(const std::vector<std::string>& names1, const std::vector<std::string>& names2)
@@ -49,6 +49,7 @@ int test_unique_name()
         std::cout << element << ' '; // should print Ava Emma Olivia Sophia
         fflush(stdout);
     }
+    std::cout << std::endl;
 
     return 0;
 }
