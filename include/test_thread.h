@@ -3,6 +3,7 @@
 
 #include <stdio.h>
 #include <iostream>
+#include <cstring>
 #include <pthread.h>
 
 using namespace std;

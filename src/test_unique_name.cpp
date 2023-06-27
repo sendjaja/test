@@ -27,7 +27,7 @@ std::vector<std::string> unique_names(const std::vector<std::string>& names1, co
     std::cout << std::endl;
 
     std::vector<std::string>::iterator uniq;
-    uniq = std::unique(ret.begin(), ret.end() + 6);
+    uniq = std::unique(ret.begin(), ret.end());
 
     ret.resize(std::distance(ret.begin(), uniq));
 

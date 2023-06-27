@@ -2,6 +2,10 @@ cmake_minimum_required (VERSION 3.8)
 
 project(Test)
 
+# Remove below line to enable choice menu
+# Otherwise default to running using gtest
+add_compile_options(-DDEBUG)
+
 add_compile_options(-Wall)
 add_compile_options(-Wextra)
 add_compile_options(-Werror)
