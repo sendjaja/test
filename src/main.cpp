@@ -22,6 +22,7 @@
 #include "test_reverse_string.h"
 #include "test_casting.h"
 #include "test_mutex_lock.h"
+#include "test_check_password.h"
 
 // List of tests
 testf alltest[] = {
@@ -44,7 +45,8 @@ testf alltest[] = {
     {16,          "pthread_printf", test_pthread_printf             },
     {17,          "reverse_string", test_reverse_string             },
     {18,                 "casting", test_casting                    },
-    {19,              "mutex lock", test_mutex_lock                 }
+    {19,              "mutex lock", test_mutex_lock                 },
+    {20,     "test_check_password", test_check_password             }
 };
 
 unsigned int testCount = sizeof(alltest)/sizeof(testf);
