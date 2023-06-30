@@ -21,11 +21,12 @@
 #include "test_pthread_printf.h"
 #include "test_reverse_string.h"
 #include "test_casting.h"
+#include "test_mutex_lock.h"
 
 // List of tests
 testf alltest[] = {
     { 0,              "helloworld", test_helloworld                 },
-    { 1,              "queue"     , test_queue                      },
+    { 1,                   "queue", test_queue                      },
     { 2,              "semaphore" , test_semaphore                  },
     { 3,          "OO inheritance", test_oo_inheritance             },
     { 4,            "unique names", test_unique_name                },
@@ -43,6 +44,7 @@ testf alltest[] = {
     {16,          "pthread_printf", test_pthread_printf             },
     {17,          "reverse_string", test_reverse_string             },
     {18,                 "casting", test_casting                    },
+    {19,              "mutex lock", test_mutex_lock                 }
 };
 
 unsigned int testCount = sizeof(alltest)/sizeof(testf);
