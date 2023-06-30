@@ -23,6 +23,7 @@
 #include "test_casting.h"
 #include "test_mutex_lock.h"
 #include "test_check_password.h"
+#include "test_binary_tree.h"
 
 // List of tests
 testf alltest[] = {
@@ -46,7 +47,8 @@ testf alltest[] = {
     {17,          "reverse_string", test_reverse_string             },
     {18,                 "casting", test_casting                    },
     {19,              "mutex lock", test_mutex_lock                 },
-    {20,     "test_check_password", test_check_password             }
+    {20,     "test_check_password", test_check_password             },
+    {21,   "test_test_binary_tree", test_binary_tree                }  
 };
 
 unsigned int testCount = sizeof(alltest)/sizeof(testf);
