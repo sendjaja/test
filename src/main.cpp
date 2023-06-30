@@ -19,6 +19,7 @@
 #include "test_bitfields.h"
 #include "test_fibonacci.h"
 #include "test_pthread_printf.h"
+#include "test_reverse_string.h"
 
 // List of tests
 testf alltest[] = {
@@ -38,7 +39,8 @@ testf alltest[] = {
     {13,                 "2darray", test_2darray                    },
     {14,               "bitfields", test_bitfields                  },
     {15,               "fibonacci", test_fibonacci                  },
-    {16,          "pthread_printf", test_pthread_printf             }
+    {16,          "pthread_printf", test_pthread_printf             },
+    {17,          "reverse_string", test_reverse_string             },
 };
 
 unsigned int testCount = sizeof(alltest)/sizeof(testf);
