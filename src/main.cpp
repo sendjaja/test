@@ -18,6 +18,7 @@
 #include "test_2darray.h"
 #include "test_bitfields.h"
 #include "test_fibonacci.h"
+#include "test_pthread_printf.h"
 
 // List of tests
 testf alltest[] = {
@@ -36,7 +37,8 @@ testf alltest[] = {
     {12,     "generate password C", test_generate_password_C        },
     {13,                 "2darray", test_2darray                    },
     {14,               "bitfields", test_bitfields                  },
-    {15,               "fibonacci", test_fibonacci                  }
+    {15,               "fibonacci", test_fibonacci                  },
+    {16,          "pthread_printf", test_pthread_printf             }
 };
 
 unsigned int testCount = sizeof(alltest)/sizeof(testf);
