@@ -20,6 +20,7 @@
 #include "test_fibonacci.h"
 #include "test_pthread_printf.h"
 #include "test_reverse_string.h"
+#include "test_casting.h"
 
 // List of tests
 testf alltest[] = {
@@ -41,6 +42,7 @@ testf alltest[] = {
     {15,               "fibonacci", test_fibonacci                  },
     {16,          "pthread_printf", test_pthread_printf             },
     {17,          "reverse_string", test_reverse_string             },
+    {18,                 "casting", test_casting                    },
 };
 
 unsigned int testCount = sizeof(alltest)/sizeof(testf);
